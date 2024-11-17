@@ -1,0 +1,24 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+enum activityName {
+  Running
+  Swimming
+  Yoga
+  Strength
+  Cycling
+}
+
+model WorkoutData {
+  id       String       @id @default(cuid()) @map("_id")
+  name     activityName @default(Running)
+  progress Float
+  isDone   Boolean      @default(false)
+  date     String
+}
